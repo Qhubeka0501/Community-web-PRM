@@ -1,0 +1,837 @@
+body{ margin:0; padding:0; font-family: Arial,sans-serif; background:#f3f4f6; }
+      *{ box-sizing:border-box; }
+      .layoutWrapper{ position:relative; }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: white;
+        padding: 20px;
+        text-align: center;
+        color: #1e3a8a;
+      }
+
+      /* Left section */
+      header .mostLeft {
+        font-size: 18px;
+        color: blue;
+      }
+
+      /* Center section (Rent, Buy, Sell) */
+      header .center {
+        display: flex;
+        gap: 55px; /* space between items */
+        color:black;
+        font-size:13px;
+        font-weight:bold;
+      }
+
+      header .right {
+        display: flex;
+        justify-content: flex-start; /* items inside move to left */
+        align-items: center;
+        gap: 55px; /* space between the items */
+      }
+
+      /* ResidenceStudy text */
+      .residence {
+        color: #1e3a8a;
+        font-size: 35px;
+        font-weight: bold;
+      }
+
+      .study {
+        color: #f59e0b;
+        font-size: 35px;
+        font-weight: bold;
+      }
+
+      /* main{
+      width:100%;
+      margin:30px auto;
+      background:white;
+      border-radius:10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      }
+      label{
+      display:block;
+      margin-top:15px;
+      font-weight:bold;
+      }
+      input[type ="text"]{
+      width:100%;
+      padding:10px;
+      margin-top:5px;
+      border:1px solid #cccccc;
+      border-radius:5px;
+      }
+      button{
+      margin-top:20px;
+      width:100%;
+      background:#1e40af;
+      color:white;
+      padding:12px;
+      border:none;
+      border-radius:5px;
+      font-size: 16px;
+      cursor:pointer;
+      }
+      button:hover{
+      background: #1d4ed8;
+      }
+      #output {
+      margin-top: 20px;
+      padding: 15px;
+      background: #e0ffe6;
+      border-left: 5px solid #16a34a;
+      border-radius: 5px;
+      display: none;
+      /* Hidden until message appears }*/
+
+      .ownerBtn{
+        background:transparent;
+        border:2px solid #1e40af;
+        color:#1e40af;
+        padding: 8px 18px;
+        border-radius: 6px;
+        font-size:16px;
+        cursor: pointer;
+      }
+
+      .ownerBtn:hover{
+        border: 2px solid #f59e0b;
+        color:black;
+      }
+
+      .signBtn{
+        background:transparent;
+        color:#1e40af;
+        border:2px solid #1e40af;
+        padding:8px 18px;
+        border-radius:6px;
+        font-size:16px;
+        cursor:pointer;
+      }
+
+      .signBtn:hover{
+        background: #f59e0b;
+        color:white;
+      }
+
+      .backgroundImage{
+        width:100%;
+        height:50vh; /*half of the screen*/
+        background-image: url("/static/images/bg2.jpg");
+        background-position:center;
+        background-repeat:no-repeat;
+        background-size:cover;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:relative;
+      }
+
+      .backgroundText{
+        color:white;
+        font-size:25;
+        font-weight:700;
+        background:rgb(0,0,0,0.3);
+        padding:20px 40px;
+        border-radius;
+      }
+
+      .section2{
+        background:#1e3a8a;
+        width:100%;
+        height:13vh;
+        padding: 20px 30px;
+        position:relative;
+      }
+
+      .searchOverlap{
+        position:absolute;
+        font-size:35px;
+        top:44vh;/* putting it below 40 percent from the top*/
+        left:50%;/* starting from the 40 percent from the left*/
+        height:100px;
+        width:1000px;
+        border-radius:6px;
+        transform: translateX(-50%); /* correct center alignment */
+      }
+
+      .searchContainer{
+        width:100%;
+        height:70px;
+        background:white;
+        display:flex;
+        border-radius:15px;
+        align-items:center;
+        position:relative;
+        padding:0 10px;
+        margin:-10;
+      }
+
+      .inputText{
+        flex:1;/* takes all the reamining width*/
+        height:60%;
+        border:none;
+        background:transparent;
+        outline:none;
+        font-size:15px;
+      }
+
+      .terminology{
+        top:-5vh;
+        left:29%;
+        display:flex;
+        font-weight:bold;
+        gap:100px;
+        font-size:18px;
+        color:white;
+        position:absolute;
+        z-index: 2;
+      }
+
+      .searchBtn {
+        background: #f59e0b; /* button color */
+        color: white;
+        border: none;
+        height:80%;
+        width:17%;
+        padding: 10px 20px; /* width of button */
+        cursor: pointer;
+        font-size: 18px;
+        border-radius:10px;
+      }
+
+      .productSection {
+        width: 100%;
+        padding: 30px;
+        background: #f9f9f9;
+        display: flex;
+        flex-wrap: wrap; /*justify-content: center;*/
+        gap: 20px;
+      }
+
+      /* Center the heading on top */
+      .productHeading {
+        width: 100%;
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 10px;
+        padding-left: 10px;
+        color: #0066ff;
+        font-weight: 12px;
+      }
+
+      /* Product card layout */
+      .card {
+        width: 260px;
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        cursor:pointer;
+        justify-content:flex-start;
+      }
+
+      .card:hover{
+        filter:brightness(0.9);
+      }
+
+      /* Image inside card */
+      .cardImg {
+        width: 100%;
+        height: 200px; /* Your fixed box height */
+        object-fit: cover; /* Fill box nicely */
+        object-position: center;
+        border-radius: 10px;
+      }
+
+      /* Title */
+      .cardTitle {
+        margin-top: 10px;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* Description */
+      .cardDesc {
+        font-size: 13px;
+        margin-top: 6px;
+        color: #444;
+        flex-grow: 1; /* pushes buttons to the bottom */
+      }
+
+      .price {
+        margin-top: 10px;
+        font-size: 17px;
+        font-weight: 700;
+        color: #16a34a;
+      }
+
+      /* Button area */
+      .cardButtons {
+        margin-top: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Main button */
+      .btnPrimary {
+        padding: 6px 14px;
+        border-radius: 20px;
+        border: 1px solid black;
+        background: white;
+        cursor: pointer;
+      }
+
+      /* Right link */
+      .btnLink {
+        font-size: 13px;
+        color: #0066ff;
+        text-decoration: none;
+      }
+
+      .thSection{
+        width:100%;
+        height:45vh;
+        margin-top:0;
+        background-color: blue ;
+      }
+
+      .tthSection {
+        padding: 40px 0;
+        background: #0e0d2c; /* optional dark background like property24 */
+        text-align: left;
+        height:39vh;
+      }
+
+      .footerResidence {
+        /* color: white; /* heading color
+        margin-left: 50px; /* pushes heading away from edge
+        margin-bottom: 15px;
+        font-size: 20px;
+        font-weight: 600px;*/
+        color: white;
+        margin-bottom: 20px;
+        margin-left: 55px;
+        font-size: 37px;
+        font-weight: 600;
+      }
+
+      .footerShop{
+        /* color: #1e3a8a; */
+        font-size: 37px;
+        font-weight: 600px;
+        color: #f59e0b;
+      }
+
+      .footerLine {
+        height: 1px;
+        width: 90%; /* line does not touch edges */
+        background-color: white; /* soft grey/white line */
+        margin: 0 auto; /* centers the line */
+      }
+
+      /* Carousel container */
+      .carousel-container {
+        position: relative;
+        width: 320px;
+        margin: 20px auto;
+        overflow: hidden;
+      }
+
+      /* Carousel inner */
+      .carousel {
+        display: flex;
+        transition: transform 0.5s ease-in-out;
+      }
+
+      /* Individual testimonial cards */
+      .testimonial {
+        min-width: 320px;
+        background: white;
+        color: black;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      /* Buttons */
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        color: #333;
+        border: none;
+        font-size: 22px;
+        padding: 6px 12px;
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .prev { left: 10px; }
+      .next { right: 10px; }
+
+      .footerLinks {
+        display: flex;
+        justify-content: flex-start;
+        gap: 120px; /* space between the two columns */
+        margin-left: 50px; /* spacing from the left edge */
+        margin-top: 30px;
+      }
+
+      .footerColumn {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footerColumn a {
+        color: #cfcfe6; /* light grey like Property24 */
+        text-decoration: none;
+        font-size: 15px;
+      }
+
+      .footerColumn a:hover {
+        text-decoration: underline;
+      }
+
+      .footerCopy {
+        margin-left: 50px;
+        margin-top: 20px;
+        color: #cfcfe6;
+        font-size: 14px;
+      }
+
+
+
+
+      /* Dark background overlay */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.55);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+      }
+
+      /* Modal box */
+      .modal-box {
+        width: 320px;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        position: relative;
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      /* Close button */
+      .modal-close {
+        position: absolute;
+        top: 10px;
+        right: 14px;
+        font-size: 26px;
+        cursor: pointer;
+      }
+
+      /* TOP button (Register) */
+      #RegBtn {
+        width: 100%;
+        padding: 12px;
+        background: #f59e0b;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-bottom: 10px;
+        margin-top: 25px;
+      }
+
+      /* OR separator */
+      .modal-or {
+        margin: 10px 0;
+        font-size: 14px;
+        color: #555;
+      }
+
+      /* Inputs */
+      .modal-input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 10px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+
+      /* Login button */
+      .modalLoginBtn {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: #1e3a8a;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      /* Forgot password */
+      .forgot-link {
+        margin-top: 10px;
+        color: #1e3a8a;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.90); }
+        to { opacity: 1; transform: scale(1); }
+      }
+
+      /* Radio button container */
+      .role-options {
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        gap: 25px;
+        font-size: 14px;
+        color: #333;
+      }
+
+      /* Make labels clickable */
+      .role-options label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+
+
+
+   /* Desktop default*/
+    .hamburger {
+        display: none;
+    }
+
+    .mobileMenu {
+        display: none;
+    }
+
+    .error-text {
+        color: #dc2626;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    .modal-input.error {
+        border: 1px solid #dc2626;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      /* =========================== RESPONSIVE DESIGN FIXES =========================== */
+
+      @media (max-width: 768px) {
+        header .center { gap: 35px; }
+        .searchOverlap { width: 85%; top: 36vh; }
+        .searchBtn { width: 30%; }
+        .productSection { justify-content: center; }
+        .card { width: 45%; }
+        .footerLinks { gap: 50px; }
+      }
+
+      @media (max-width: 1024px) {
+        .card { width: 30%; }
+        .productSection { justify-content: center; }
+        .footerLinks { gap: 80px; }
+        .searchOverlap { width: 70%; }
+      }
+
+
+
+
+
+      /* =========================== MOBILE FIXES (SAFE) =========================== */
+@media (max-width: 600px){
+      header {
+        position: relative;
+        flex-direction: row;
+        justify-content: center;
+      }
+
+
+
+
+
+
+
+      /* Center ResidenceShop */
+      header .left { margin: 0 auto; }
+
+
+
+       .hamburger {
+             display: block;
+             position: absolute;
+             left: 15px;
+             font-size: 28px;
+             cursor: pointer;
+             z-index: 1001;
+         }
+
+
+
+
+
+
+
+
+
+            header .right {
+                 display: none;
+             }
+
+
+
+    header .center{
+    display:none;
+    }
+
+
+
+
+
+
+    .mobileMenu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 20px 0;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        animation: slideDown 0.3s ease forwards;
+    }
+
+
+
+    /* When JS adds .show */
+    .mobileMenu.show {
+        display: flex;
+    }
+
+
+
+
+
+
+
+
+
+
+      /* Stack items*/
+      .mobileMenu .center,
+      .mobileMenu .right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+
+/* Slide animation*/
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+ .card {
+        width: calc(50% - 4px);
+        max-width: none;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+
+
+
+
+
+      /* HERO SECTION*/
+      .backgroundImage { height: 35vh; }
+
+      .backgroundText {
+        font-size: 18px;
+        padding: 12px 20px;
+        text-align: center;
+      }
+
+      /* SEARCH OVERLAY*/
+      .searchOverlap {
+        width: 90%;
+        height: auto;
+        top: 32vh;
+      }
+
+      .searchContainer {
+        flex-direction: column;
+        height: auto;
+        padding: 10px;
+        gap: 10px;
+      }
+
+      .inputText {
+        width: 100%;
+        font-size: 16px;
+      }
+
+      .searchBtn {
+        width: 100%;
+        font-size: 16px;
+      }
+
+      .terminology {
+        position: static;
+        margin-top: 10px;
+        gap: 20px;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      /* PRODUCTS*/
+      .productSection {
+        padding: 20px 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .card {
+        width: calc(50% - 4px);
+        max-width: none;
+        padding: 0;
+        box-sizing: border-box;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .cardImg {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* TESTIMONIAL SECTION*/
+      .thSection {
+        height: auto;
+        padding: 20px 10px;
+      }
+
+      /* FOOTER*/
+      .tthSection {
+        height: auto;
+        padding: 30px 15px;
+        text-align: center;
+      }
+  .footerLinks {
+        display: flex;
+        justify-content: flex-start;
+        gap: 120px; /* space between the two columns */
+        margin-left: 50px; /* spacing from the left edge */
+        margin-top: 30px;
+      }
+
+      .footerColumn {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .footerColumn a {
+        color: #cfcfe6; /* light grey like Property24 */
+        text-decoration: none;
+        font-size: 15px;
+      }
+
+      .footerColumn a:hover {
+        text-decoration: underline;
+      }
+
+      .footerCopy {
+        margin-left: 50px;
+        margin-top: 20px;
+        color: #cfcfe6;
+        font-size: 14px;
+      }
+
+
+      /* MODAL*/
+      .modal-box {
+        width: 95%;
+        max-width: 420px;
+        padding: 28px 20px;
+      }
+
+      .modal-input,
+      #RegBtn,
+      .modalLoginBtn {
+        font-size: 17px;
+        padding: 14px;
+      }
+
+      .role-options {
+        gap: 10px;
+        font-size: 16px;
+     }
+     }

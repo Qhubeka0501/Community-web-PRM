@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}ResidenceHub | Home{% endblock %}
+{% block content %}
+<section class="home-hero" aria-label="ResidenceHub introduction">
+  <div class="home-hero-overlay"></div>
+  <div class="home-hero-content">
+    <p class="home-eyebrow">RESIDENCEHUB</p>
+    <h1>Connect. Discover. Trade.</h1>
+    <p class="home-hero-text">Discover products shared by your university community in one place.</p>
+  </div>
+
+  <div class="home-search-wrap">
+    <form id="home-search-form" class="home-search" role="search">
+      <input id="home-search" name="q" type="search" placeholder="Search products..." autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="home-products-section" id="home-products">
+  <div class="home-section-heading">
+    <div>
+      <p class="home-section-kicker">DISCOVER</p>
+      <h2>Products Sold in Your Community</h2>
+    </div>
+    <a class="home-view-all" href="/marketplace">View all products <span aria-hidden="true">→</span></a>
+  </div>
+
+  <div id="home-product-grid" class="home-product-grid" aria-live="polite">
+    <p class="home-products-loading">Loading products...</p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script>loadHome()</script>{% endblock %}

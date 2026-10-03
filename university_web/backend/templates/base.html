@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ResidenceHub — campus marketplace and community platform.">
+<title>{% block title %}ResidenceHub{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/unified.css') }}">
+</head><body class="{% if request.path == '/' %}home-page{% endif %}">
+<header class="site-header">
+  <a class="brand" href="/" aria-label="ResidenceHub home"><span>Residence</span><b>Hub</b></a>
+  <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+  <nav id="main-nav" aria-label="Primary navigation">
+    <a href="/" {% if request.path == '/' %}aria-current="page"{% endif %}>Home</a>
+    <a href="/marketplace" {% if request.path.startswith('/marketplace') %}aria-current="page"{% endif %}>Marketplace</a>
+    <a href="/bulletin" {% if request.path.startswith('/bulletin') %}aria-current="page"{% endif %}>Community</a>
+    <a id="seller-nav" href="/seller/dashboard" {% if request.path.startswith('/seller') %}aria-current="page"{% endif %}>Selling</a>
+  </nav>
+  <div class="header-actions">
+    <a href="/cart" class="header-icon" aria-label="Cart" title="Cart">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 4h2l1.1 10.5h10.8l1.5-7.5H7.1M9 18.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm9.5 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0ZM7 7h12"/></svg><span id="cart-count" class="header-count"></span>
+    </a>
+    <button id="notification-button" class="header-icon" aria-label="Notifications" title="Notifications" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17h10l-1.2-1.7V10a3.8 3.8 0 0 0-7.6 0v5.3L7 17Zm3.2 2a2 2 0 0 0 3.6 0"/></svg><span id="notification-count" class="header-count"></span>
+    </button>
+    <a href="/profile" class="header-icon profile-icon" aria-label="Profile" title="Profile">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.2 20c.7-3.6 3.1-5.7 6.8-5.7s6.1 2.1 6.8 5.7"/></svg>
+    </a>
+    <a id="auth-link" class="header-signin" href="/login">Sign in</a>
+  </div>
+</header>
+<div id="notification-panel" class="notification-panel hidden" role="dialog" aria-label="Notifications"></div>
+<div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+<main>{% block content %}{% endblock %}</main>
+<footer>
+  <div><strong>ResidenceHub</strong><p>One place for your campus marketplace and community.</p></div>
+  <div><a href="/marketplace">Marketplace</a><a href="/bulletin">Community</a><a href="/profile">Account</a></div>
+  <div><p>© 2026 ResidenceHub. All rights reserved.</p></div>
+</footer>
+<script src="{{ url_for('static',filename='js/unified.js') }}"></script>{% block scripts %}{% endblock %}
+</body></html>
